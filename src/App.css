@@ -1,28 +1,122 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  max-width: 980px;
+  padding: 2rem 0;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  background: #e74c3c;
+  margin-bottom: 2rem;
+  height: 4rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+.App-content-main {
+  padding: 1rem;
+  border: 1px solid #EEE;
+  border-radius: 8px;
 }
 
-.App-intro {
-  font-size: large;
+.App-content-main-ad {
+  background: #2ecc71;
+  height: 5rem;
+  margin: 2rem 0;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.App-content-sidebar-block {
+  height: 5rem;
+  margin-bottom: 1rem;
+  background: #EEE;
+  border-radius: 8px;
+}
+.App-content-sidebar-block:last-child {
+  margin-bottom: 0;
+}
+.App-content-sidebar-block.Ad {
+  background: #9b59b6;
+}
+.App-content-sidebar-block.is-long {
+  height: 22rem;
+}
+
+@keyframes pop-up {
+  0% {
+    opacity: 0;
+    transform: translateY(200px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.App-removeads {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 2rem;
+  padding: 1rem;
+  left: 50%;
+  width: 380px;
+  margin-left: -190px;
+  background: #FFF;
+  border: 1px solid #EEE;
+  animation: pop-up 500ms ease 1;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.App-removeads-text {
+  margin-right: 1rem;
+}
+
+@keyframes ad-jiggle {
+  0%, 20% {
+    transform: translateX(0);
+  }
+  7% {
+    transform: translateX(2px);
+  }
+  14% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+.Ad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #FFF;
+  border-radius: 8px;
+  text-align: center;
+  font-family: sans-serif;
+}
+.Ad > span {
+  animation: ad-jiggle 1000ms ease infinite;
+}
+
+@keyframes ad-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  99% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    visibility: hidden;
+    display: none;
+  }
+}
+.App.no-ads .Ad {
+  animation: ad-disappear 300ms ease 1;
+  animation-fill-mode: forwards;
+}
+.App.no-ads .App-removeads {
+  opacity: 0;
+  transform: translateY(200px) scale(0.8);
 }
